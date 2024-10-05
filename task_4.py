@@ -12,6 +12,10 @@ def get_upcoming_birthdays(users: list) -> list:
         #set date in current year
         user_birthday = user_birthday.replace(year = today.year)  
 
+        #if user birthday in past - lets add one more year to make all birhtdays in the future relative to today 
+        if today > user_birthday:
+            user_birthday = user_birthday.replace(year = today.year + 1)
+
         #get days to birthday
         days_to_user_birthdate = (user_birthday - today).days
 
@@ -32,8 +36,8 @@ def get_upcoming_birthdays(users: list) -> list:
 
 
 users = [
-    {"name": "John Doe", "birthday": "1985.10.04"},
-    {"name": "Jane Smith", "birthday": "1990.01.27"}
+    {"name": "John Doe", "birthday": "1985.12.30"},
+    {"name": "Jane Smith", "birthday": "1990.01.03"}
 ]
 
 print(f"{get_upcoming_birthdays(users)}")
